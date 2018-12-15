@@ -1,0 +1,11 @@
+.crystal-image{
+  height: 100px;
+  width: 100px;
+}
+
+.play-button{
+  color:blue;
+  margin: 5px;
+  padding: 5px;
+  background-color: blanchedalmond;
+}
