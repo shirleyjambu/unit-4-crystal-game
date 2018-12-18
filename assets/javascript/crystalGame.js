@@ -5,6 +5,8 @@ var winCounter = 0;
 var lossCounter = 0;
 var gameActive = false;
 
+var arrCrystals = ["assets/images/crystal0.jpg","assets/images/crystal1.jpg","assets/images/crystal2.jpg","assets/images/crystal3.jpg"];
+
 // Start of Functions
 function setGame() {
   gameActive = true;
@@ -22,10 +24,11 @@ function setGame() {
 function generateRandomArray() {
   // Random number between 1 to 12
   var arrNum = [];
-  for (var i = 0; i < 4; i++) {
+  for (var i = 0; i < arrCrystals.length; i++) {
     arrNum.push(Math.floor(Math.random() * 12 + 1));
   }
 
+  // Console log values associated with each crystal
   for (var i = 0; i < arrNum.length; i++) {
     console.log("crystal value " + (i + 1) + " : " + arrNum[i]);
   }
@@ -39,10 +42,10 @@ function generateRandomNumber() {
 
 function setCrystals(arrCrystalValues) {
   $("#crystals").empty();
-  for (var i = 0; i < arrCrystalValues.length; i++) {
+  for (var i = 0; i < arrCrystals.length; i++) {
     var imageCrystal = $("<img>");
     imageCrystal.addClass("img img-thumnail crystal-image");
-    imageCrystal.attr("src", "assets/images/crystal" + (i + 1) + ".jpg");
+    imageCrystal.attr("src", arrCrystals[i]);
     imageCrystal.attr("data-crystalvalue", arrCrystalValues[i]);
     $("#crystals").append(imageCrystal);
   }
@@ -85,7 +88,6 @@ $(document).ready(function () {
       alert("Press the Play Again button.");
       return false;
     }
-      
   });
 
 
