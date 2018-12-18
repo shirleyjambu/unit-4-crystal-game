@@ -3,9 +3,11 @@ var randomNumber;
 var arrCrystalValues;
 var winCounter = 0;
 var lossCounter = 0;
+var gameActive = false;
 
 // Start of Functions
 function setGame() {
+  gameActive = true;
   randomNumber = generateRandomNumber();
   $("#randomNumber").text(randomNumber);
   $("#winDisplay").text(winCounter);
@@ -47,17 +49,19 @@ function setCrystals(arrCrystalValues) {
 }
 
 function setTotalDisplay(dataVal) {
-  var total = parseInt($("#totalDisplay").text()) + dataVal;
+  var total = parseInt($("#totalDisplay").text()) + parseInt(dataVal);
   $("#totalDisplay").text(total);
   if (total >= randomNumber) {
     if (total > randomNumber) {
       // Lose
       $("#messageDisplay").text("You Lose !");
       lossCounter++;
+      $("#lossDisplay").text(lossCounter);
     } else {
       // Win
       $("#messageDisplay").text("You Win !");
       winCounter++;
+      $("#winDisplay").text(winCounter);
     }
     // add button
     var $btn = $("<button>");
@@ -65,6 +69,8 @@ function setTotalDisplay(dataVal) {
     $btn.attr("id", "play");
     $btn.text("Play Again");
     $("#messageDisplay").append($btn);
+
+    gameActive=false;
   }
 }
 // End Of Functions
@@ -73,9 +79,13 @@ $(document).ready(function () {
   setGame();
 
   $("#crystals").on("click", ".crystal-image", function () {
-    var crystalValue = ($(this).attr("data-crystalvalue"));
-    crystalValue = parseInt(crystalValue);
-    setTotalDisplay(crystalValue);
+    if(gameActive){
+      setTotalDisplay($(this).attr("data-crystalvalue"));
+    }else{
+      alert("Press the Play Again button.");
+      return false;
+    }
+      
   });
 
 

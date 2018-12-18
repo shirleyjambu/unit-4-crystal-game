@@ -4,8 +4,8 @@
 }
 
 .play-button{
-  color:blue;
-  margin: 5px;
+  color:black;
+  margin-left: 25px;
   padding: 5px;
-  background-color: blanchedalmond;
+  background-color: lightgray;
 }
